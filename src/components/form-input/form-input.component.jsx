@@ -26,8 +26,6 @@ const FormInput = ({
     }
   };
 
-
-
   return (
     <InputGroupContainer>
       <InputContainer

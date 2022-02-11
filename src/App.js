@@ -3,7 +3,7 @@ import "./App.css";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 import { createStructuredSelector } from "reselect";
 
@@ -22,8 +22,18 @@ class App extends React.Component {
   componentDidMount() {
     const { setCurrentUser } = this.props;
 
-    this.unsubcribeFromAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    this.unsubcribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userRef = await createUserProfileDocument(user);
+        userRef.onSnapshot((snapshot) => {
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data(),
+          });
+        });
+      } else {
+        setCurrentUser(null);
+      }
     });
   }
 
@@ -39,7 +49,12 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/netflix" component={NetflixPage} />
-          <Route path="/sign-up" component={SignUp} />
+          <Route
+            path="/sign-up"
+            render={() =>
+              currentUser ? <Redirect to="/netflix" /> : <SignUp />
+            }
+          />
           <Route
             exact
             path="/sign-in"

@@ -12,9 +12,9 @@ from `https://www.themoviedb.org/`. Go through the docs to learn how to use thei
 - [@ArindamSankarDas](https://github.com/ArindamSankarDas)
 
 
-## Upcoming Tech Integrations
+## New Tech Integrations
 
-**User Authentication**: I will create a sign-page through which the user can Sign-In or Sign-Up. I will also create a log-out system, so that when the user clicks on the profile icon it logs him out of the account.(Using Firebase)
-
-
-# Coming Soon ..... 😉😉
+**User Authentication**: I have created a signIn, signUp and signOut functionality using firebase. We have two types of authentication services -
+1.Google
+2.Email and password.
+# Many more tech Integrations Coming Soon ..... 😉😉

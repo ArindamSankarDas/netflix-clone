@@ -1,6 +1,9 @@
 import React from "react";
 import { SignUpContainer } from "./sign-up.styles";
 
+import { auth } from "../../../firebase/firebase.utils";
+import { createUserProfileDocument } from "../../../firebase/firebase.utils";
+
 import Navbar from "../../../components/navbar/navbar.component";
 import FormInput from "../../../components/form-input/form-input.component";
 import BoxContainer from "../../../components/box-container/box-container.component";
@@ -64,16 +67,30 @@ class SignUp extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { error1, error2 } = this.state;
-    const { checkAuthentication } = this.props;
+    const { error1, error2, email, password, displayName } = this.state;
 
     if (error1 || error2) {
       alert("Enter the details correctly");
     } else {
-      return checkAuthentication(true);
+      try {
+        const { user } = await auth.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+
+        await createUserProfileDocument(user, { displayName });
+
+        this.setState({
+          displayName: "",
+          email: "",
+          password: "",
+          error1: "",
+          error2: "",
+        });
+      } catch (error) {}
     }
   };
 

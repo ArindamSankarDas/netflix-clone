@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SignInContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: relative;
   background: ${({ imageUrl }) => `url(${imageUrl})`} no-repeat center;
   background-size: cover;

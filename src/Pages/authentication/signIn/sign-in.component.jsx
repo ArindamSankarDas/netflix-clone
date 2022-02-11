@@ -1,13 +1,14 @@
 import React from "react";
 import { SignInContainer } from "./sign-in.styles";
 
+import { auth, signInWithGoogle } from "../../../firebase/firebase.utils";
+
 import Navbar from "../../../components/navbar/navbar.component";
 import BoxContainer from "../../../components/box-container/box-container.component";
 import FormInput from "../../../components/form-input/form-input.component";
 import CustomButton from "../../../components/custom-button/custom-button.component";
 import RegisteredContainer from "../../../components/registered-container/registered-container.component";
 
-import { signInWithGoogle } from "../../../firebase/firebase.utils";
 
 class SignIn extends React.Component {
   constructor() {
@@ -59,16 +60,25 @@ class SignIn extends React.Component {
     return this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { error1, error2 } = this.state;
-    const { checkAuthentication } = this.props;
+    const { error1, error2, email, password } = this.state;
 
     if (error1 || error2) {
       alert("Enter the details correctly");
     } else {
-      return checkAuthentication(true);
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+        this.setState({
+          email: "",
+          password: "",
+          error1: "",
+          error2: "",
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
