@@ -6,12 +6,12 @@ const successMessage = css`
 
 const errorMessage = css`
   position: absolute;
-  bottom: -2.2rem;
+  bottom: -2.4rem;
   color: #ffa00a;
   font-size: 1.5rem;
 
   @media (max-width: 928px) {
-    top: 5.5rem;
+    top: 6.5rem;
     left: 0;
   }
 `;
@@ -50,6 +50,10 @@ export const EmailContainerSection = styled.section`
     h3 {
       font-size: 1.8rem;
     }
+  }
+
+  @media (max-width: 800px) {
+    margin-top: -10rem;
   }
 `;
 
@@ -138,7 +142,7 @@ export const Button = styled.button`
   }
 
   @media (max-width: 680px) {
-    top: 4rem;
+    top: 5rem;
     width: 50%;
     font-size: 1.8rem;
   }

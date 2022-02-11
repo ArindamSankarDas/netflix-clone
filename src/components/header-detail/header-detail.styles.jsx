@@ -50,9 +50,10 @@ export const HeaderDetailContainer = styled.div`
   }
 
   @media (max-width: 400px) {
+    height: 45%;
     h1 {
       margin: 0 5%;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
     }
 
     h2 {
