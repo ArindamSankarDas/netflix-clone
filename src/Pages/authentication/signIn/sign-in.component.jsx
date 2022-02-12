@@ -9,7 +9,6 @@ import FormInput from "../../../components/form-input/form-input.component";
 import CustomButton from "../../../components/custom-button/custom-button.component";
 import RegisteredContainer from "../../../components/registered-container/registered-container.component";
 
-
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -77,6 +76,7 @@ class SignIn extends React.Component {
           error2: "",
         });
       } catch (error) {
+        alert("Error, You might have entered wrong username or password");
         console.log(error);
       }
     }
