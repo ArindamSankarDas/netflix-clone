@@ -29,8 +29,9 @@ class BannerNavbar extends React.Component {
 
   handleClick = async () => {
     const { history } = this.props;
-
     await auth.signOut().then(() => history.replace("/"));
+
+    alert("Signing you out and Redirecting to Homepage");
   };
 
   componentDidMount() {

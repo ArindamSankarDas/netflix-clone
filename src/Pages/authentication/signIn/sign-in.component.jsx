@@ -20,6 +20,11 @@ class SignIn extends React.Component {
     };
   }
 
+  handleGoogleSignIn = async () => {
+    await signInWithGoogle();
+    alert("Signing you in with your google account and Redirecting");
+  };
+
   emailVerification = (value) => {
     const symbolAt = value.indexOf("@");
     const dot = value.indexOf(".");
@@ -68,6 +73,7 @@ class SignIn extends React.Component {
       alert("Enter the details correctly");
     } else {
       try {
+        alert("signing you in!!! and redirecting");
         await auth.signInWithEmailAndPassword(email, password);
         this.setState({
           email: "",
@@ -110,7 +116,11 @@ class SignIn extends React.Component {
               required
             />
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton type="button" onClick={signInWithGoogle} google>
+            <CustomButton
+              type="button"
+              onClick={this.handleGoogleSignIn}
+              google
+            >
               Sign In/Sign Up with Google
             </CustomButton>
           </form>

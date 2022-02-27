@@ -76,6 +76,8 @@ class SignUp extends React.Component {
       alert("Enter the details correctly");
     } else {
       try {
+        alert("Signing you up and Redirecting!!");
+
         const { user } = await auth.createUserWithEmailAndPassword(
           email,
           password
@@ -90,7 +92,11 @@ class SignUp extends React.Component {
           error1: "",
           error2: "",
         });
-      } catch (error) {}
+      } catch (error) {
+        alert(
+          "Some error has occured or you have already Signed in with this email or with your google account"
+        );
+      }
     }
   };
 
